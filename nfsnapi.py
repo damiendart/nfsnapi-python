@@ -1,12 +1,3 @@
-#!/usr/bin/env python
-
-"""A dynamic-DNS thing for NearlyFreeSpeech.NET-managed domains.
-
-This file was written by Damien Dart, <damiendart@pobox.com>. This is
-free and unencumbered software released into the public domain. For more
-information, please refer to the accompanying "UNLICENCE" file.
-"""
-
 import hashlib
 import json
 import random
@@ -70,25 +61,3 @@ class NFSNAPIRequestError(Exception):
     Exception.__init__(self, error_message)
     self.debug_message = debug_message
     self.error_code, self.error_message = error_code, error_message
-
-
-if __name__ == "__main__":
-  import sys
-  try:
-    # TODO: Check if IP addresses are being returned.
-    old_ip_address = json.loads(NFSNAPIRequest(sys.argv[1], sys.argv[2],
-        "/dns/%s/listRRs" % sys.argv[3], "name=%s" % sys.argv[4]).run())[0]["data"]
-    new_ip_address = urllib2.urlopen("http://icanhazip.com").read().rstrip()
-    if (old_ip_address == new_ip_address):
-      print "IP address hasn't changed, no further action is required."
-    else:
-      NFSNAPIRequest(sys.argv[1], sys.argv[2],
-          "/dns/%s/removeRR" % sys.argv[3],
-          "name=%s&type=A&data=%s" % (sys.argv[4], old_ip_address)).run()
-      NFSNAPIRequest(sys.argv[1], sys.argv[2],
-          "/dns/%s/addRR" % sys.argv[3],
-          "name=%s&type=A&data=%s&ttl=180" % (sys.argv[4], new_ip_address)).run()
-      print "<http://%s.%s/> now points to %s." % (sys.argv[4], sys.argv[3],
-          old_ip_address)
-  except NFSNAPIRequestError as e:
-    print "ERROR: " + str(e)

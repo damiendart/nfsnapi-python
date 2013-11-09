@@ -35,7 +35,7 @@ def auth_header(username, API_key, request_path, request_body = None):
 
 
 def run_request(username, API_key, request_path, request_body = None):
-  """Runs a NearlyFreeSpeech.NET API request, returns a string response.
+  """Run a NearlyFreeSpeech.NET API request, return a string response.
 
   NOTE: As this method uses the "urllib2.urlopen" function to run
   requests, the API server's certificate is not verified.

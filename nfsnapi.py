@@ -5,6 +5,35 @@ import string
 import time
 import urllib2
 
+
+def auth_header(username, API_key, request_path, request_body = None):
+  """Generate the NearlyFreeSpeeech.NET authentication header field.
+
+  Returns a dictionary containing an authentication header field
+  required for NearlyFreeSpeech.NET API requests. For more infomation,
+  see <https://members.nearlyfreespeech.net/wiki/API/Introduction>.
+
+  - "username" should be a string containing the member login name of
+    the user making the request.
+  - "API_key" should be a string containing the API key assosiated with
+    the member login name; an API key can be obtained by submitting a
+    secure support request to NearlyFreeSpeeech.NET.
+  - "request_path" should be a string containing the path portion of the
+    requested URL. For example, if the requested URL is
+    <https://api.nearlyfreespeech.net/site/example/addAlias>,
+    "request_path" would be "/site/example/addAlias".
+  - "request_body" may be a string containing the HTTP request body, or
+    "None" if no such data is required. The data should be in the
+    standard "application/x-www-form-urlencoded" format.
+  """
+
+  salt = "".join(random.choice(string.ascii_letters) for i in range(16))
+  timestamp = str(int(time.time()))
+  return { "X-NFSN-Authentication" : ";".join([username, timestamp, salt,
+        hashlib.sha1(";".join([username, timestamp, salt, API_key,
+        request_path, hashlib.sha1(request_body).hexdigest()])).hexdigest()])}
+
+
 def run_request(username, API_key, request_path, request_body = None):
   """Runs a NearlyFreeSpeech.NET API request, returns a string response.
 
@@ -30,14 +59,10 @@ def run_request(username, API_key, request_path, request_body = None):
     standard "application/x-www-form-urlencoded" format.
   """
 
-  salt = "".join(random.choice(string.ascii_letters) for i in range(16))
-  timestamp = str(int(time.time()))
   try:
     return urllib2.urlopen(urllib2.Request(
         "https://api.nearlyfreespeech.net%s" % request_path, request_body,
-        {"X-NFSN-Authentication" : ";".join([username, timestamp, salt,
-        hashlib.sha1(";".join([username, timestamp, salt, API_key, request_path,
-        hashlib.sha1(request_body).hexdigest()])).hexdigest()])})).read()
+        auth_header(username, API_key, request_path, request_body))).read()
   except urllib2.HTTPError as e:
     try:
       error_response = json.loads(e.read())

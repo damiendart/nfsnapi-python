@@ -7,9 +7,9 @@ import urllib2
 
 
 def auth_header(username, API_key, request_path, request_body = None):
-  """Generate the NearlyFreeSpeeech.NET authentication header field.
+  """Return a NearlyFreeSpeeech.NET authentication HTTP header field.
 
-  Returns a dictionary containing an authentication header field
+  Returns a dictionary containing an authentication HTTP header field
   required for NearlyFreeSpeech.NET API requests. For more infomation,
   see <https://members.nearlyfreespeech.net/wiki/API/Introduction>.
 

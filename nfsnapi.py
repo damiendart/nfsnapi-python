@@ -63,14 +63,16 @@ def run_request(username, API_key, request_path, request_body = None):
     return urllib2.urlopen(urllib2.Request(
         "https://api.nearlyfreespeech.net%s" % request_path, request_body,
         auth_header(username, API_key, request_path, request_body))).read()
+  except httplib.HTTPException as e:
+    raise NFSNAPIRequestError(str(e), request_path)
   except urllib2.HTTPError as e:
     try:
-      error_response = json.loads(e.read())
-      raise NFSNAPIRequestError(error_response["error"], request_path
-          error_response["debug"])
+      error = json.loads(e.read())
+      raise NFSNAPIRequestError(error["error"], request_path, error["debug"])
     except ValueError:
-      raise NFSNAPIRequestError("%s (%s)" % (e.reason, e.code),
-          request_path, None)
+      raise NFSNAPIRequestError(str(e.reason), request_path)
+  except urllib2.URLError as e:
+    raise NFSNAPIRequestError(str(e.reason), request_path)
 
 
 class NFSNAPIRequestError(Exception):

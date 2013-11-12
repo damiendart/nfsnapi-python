@@ -64,28 +64,28 @@ def run_request(username, API_key, request_path, request_body = None):
         "https://api.nearlyfreespeech.net%s" % request_path, request_body,
         auth_header(username, API_key, request_path, request_body))).read()
   except httplib.HTTPException as e:
-    raise NFSNAPIRequestError(str(e), request_path)
+    raise NFSNAPIRequestError(str(e))
   except urllib2.HTTPError as e:
     try:
       error = json.loads(e.read())
-      raise NFSNAPIRequestError(error["error"], request_path, error["debug"])
+      raise NFSNAPIRequestError("\n".join(error["error"], error["debug"]))
     except ValueError:
-      raise NFSNAPIRequestError(str(e.reason), request_path)
+      raise NFSNAPIRequestError(str(e.reason))
   except urllib2.URLError as e:
-    raise NFSNAPIRequestError(str(e.reason), request_path)
+    raise NFSNAPIRequestError(str(e.reason))
 
 
 class NFSNAPIRequestError(Exception):
   """Raised when an NearlyFreeSpeech.NET API request fails.
 
-  Every instance will have following attributes:
-
-  - "reason", a string with the reason for the error,
-  - "request", a string containing the requested URL, and
-  - "debug", a string with additional information regarding the error,
-    or "None" if no such information is available.
+  Every instance will have a "reason" attribute, a string with the
+  reason for the error. If the offending request resulted in a 4XX or
+  5XX HTTP response, the attribute will contain the "human-readable" and
+  debug error messages returned by the NearlyFreeSpeech.NET API,
+  separated by a new-line (for more information, see
+  <https://members.nearlyfreespeech.net/wiki/API/Introduction>).
   """
 
-  def __init__(self, reason, request_path, debug = None):
-    Exception.__init__(self, error_message)
-    self.debug, self.reason, self.request = debug, reason, request_path
+  def __init__(self, reason):
+    Exception.__init__(self, reason)
+    self.reason = reason

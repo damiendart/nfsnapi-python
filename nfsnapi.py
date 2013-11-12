@@ -66,16 +66,24 @@ def run_request(username, API_key, request_path, request_body = None):
   except urllib2.HTTPError as e:
     try:
       error_response = json.loads(e.read())
-      raise NFSNAPIRequestError(e.code, error_response["error"],
+      raise NFSNAPIRequestError(error_response["error"], request_path
           error_response["debug"])
     except ValueError:
-      raise NFSNAPIRequestError(e.code, e.response, "")
+      raise NFSNAPIRequestError("%s (%s)" % (e.reason, e.code),
+          request_path, None)
 
 
 class NFSNAPIRequestError(Exception):
-  """Raised when an NearlyFreeSpeech.NET API request fails."""
+  """Raised when an NearlyFreeSpeech.NET API request fails.
 
-  def __init__(self, error_code, error_message, debug_message):
+  Every instance will have following attributes:
+
+  - "reason", a string with the reason for the error,
+  - "request", a string containing the requested URL, and
+  - "debug", a string with additional information regarding the error,
+    or "None" if no such information is available.
+  """
+
+  def __init__(self, reason, request_path, debug = None):
     Exception.__init__(self, error_message)
-    self.debug_message = debug_message
-    self.error_code, self.error_message = error_code, error_message
+    self.debug, self.reason, self.request = debug, reason, request_path

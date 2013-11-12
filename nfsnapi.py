@@ -1,3 +1,11 @@
+"""Stuff to make working with the NearlyFreeSpeech.NET API easier."""
+
+__author__ = "Damien Dart, <damiendart@pobox.com>"
+__license__ = "Unlicense"
+__title__ = "nfsnapi"
+__version__ = "0.1.0"
+
+
 import hashlib
 import json
 import random

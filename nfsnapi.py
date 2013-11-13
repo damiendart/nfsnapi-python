@@ -1,4 +1,19 @@
-"""Stuff to make working with the NearlyFreeSpeech.NET API easier."""
+"""Stuff to make working with the NearlyFreeSpeech.NET API easier.
+
+  >>> import nfsnapi
+  >>> # Replace USERNAME, API_KEY, and so on with actual values.
+  >>> nfsnapi.run_request("USERNAME", "API_KEY",
+  ... "/account/ACCOUNT_NUMBER/balance")
+  '10.56'
+  >>> nfsnapi.run_request("USERNAME", "API_KEY",
+  ... "/dns/DOMAIN/listRRs", "type=A")
+  (A bunch of JSON not shown.)
+  >>> # And so on...
+
+This file was written by Damien Dart, <damiendart@pobox.com>. This is
+free and unencumbered software released into the public domain. For more
+information, please refer to the accompanying "UNLICENCE" file.
+"""
 
 __author__ = "Damien Dart, <damiendart@pobox.com>"
 __license__ = "Unlicense"

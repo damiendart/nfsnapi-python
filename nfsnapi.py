@@ -7,6 +7,7 @@ __version__ = "0.1.0"
 
 
 import hashlib
+import httplib
 import json
 import random
 import string
@@ -14,7 +15,7 @@ import time
 import urllib2
 
 
-def auth_header(username, API_key, request_path, request_body = None):
+def auth_header(username, API_key, request_path, request_body = ""):
   """Return a NearlyFreeSpeeech.NET authentication HTTP header field.
 
   Returns a dictionary containing an authentication HTTP header field
@@ -30,16 +31,17 @@ def auth_header(username, API_key, request_path, request_body = None):
     requested URL. For example, if the requested URL is
     <https://api.nearlyfreespeech.net/site/example/addAlias>,
     "request_path" would be "/site/example/addAlias".
-  - "request_body" may be a string containing the HTTP request body, or
-    "None" if no such data is required. The data should be in the
-    standard "application/x-www-form-urlencoded" format.
+  - "request_body" may be a string containing the HTTP request message
+    body for HTTP POST requests or an empty string if no such data is
+    required. The data should be in the standard
+    "application/x-www-form-urlencoded" format.
   """
 
   salt = "".join(random.choice(string.ascii_letters) for i in range(16))
   timestamp = str(int(time.time()))
   return { "X-NFSN-Authentication" : ";".join([username, timestamp, salt,
         hashlib.sha1(";".join([username, timestamp, salt, API_key,
-        request_path, hashlib.sha1(request_body).hexdigest()])).hexdigest()])}
+        request_path, hashlib.sha1(request_body).hexdigest()])).hexdigest()]) }
 
 
 def run_request(username, API_key, request_path, request_body = None):
@@ -62,21 +64,23 @@ def run_request(username, API_key, request_path, request_body = None):
     requested URL. For example, if the requested URL is
     <https://api.nearlyfreespeech.net/site/example/addAlias>,
     "request_path" would be "/site/example/addAlias".
-  - "request_body" may be a string containing the HTTP request body, or
-    "None" if no such data is required. The data should be in the
-    standard "application/x-www-form-urlencoded" format.
+  - "request_body" may be a string containing the HTTP request message
+    body for HTTP POST requests or "None" for HTTP GET requests.
+    Pass an empty string for HTTP POST requests that do not require a
+    message body. The data should be in the standard
+    "application/x-www-form-urlencoded" format.
   """
 
   try:
     return urllib2.urlopen(urllib2.Request(
         "https://api.nearlyfreespeech.net%s" % request_path, request_body,
-        auth_header(username, API_key, request_path, request_body))).read()
+        auth_header(username, API_key, request_path, str(request_body or "")))).read()
   except httplib.HTTPException as e:
     raise NFSNAPIRequestError(str(e))
   except urllib2.HTTPError as e:
     try:
       error = json.loads(e.read())
-      raise NFSNAPIRequestError("\n".join(error["error"], error["debug"]))
+      raise NFSNAPIRequestError("\n".join([error["error"], error["debug"]]))
     except ValueError:
       raise NFSNAPIRequestError(str(e.reason))
   except urllib2.URLError as e:

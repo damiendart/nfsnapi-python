@@ -96,7 +96,7 @@ def run_request(username, API_key, request_path, request_body = None):
     try:
       error = json.loads(e.read())
       raise NFSNAPIRequestError("\n".join([error["error"], error["debug"]]))
-    except ValueError:
+    except (KeyError, ValueError):
       raise NFSNAPIRequestError(str(e.reason))
   except urllib2.URLError as e:
     raise NFSNAPIRequestError(str(e.reason))

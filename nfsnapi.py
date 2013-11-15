@@ -34,12 +34,12 @@ def auth_header(username, API_key, request_path, request_body = ""):
   """Return a NearlyFreeSpeeech.NET authentication HTTP header field.
 
   Returns a dictionary containing an authentication HTTP header field
-  required for NearlyFreeSpeech.NET API requests. For more infomation,
+  required for NearlyFreeSpeech.NET API requests. For more information,
   see <https://members.nearlyfreespeech.net/wiki/API/Introduction>.
 
   - "username" should be a string containing the member login name of
     the user making the request.
-  - "API_key" should be a string containing the API key assosiated with
+  - "API_key" should be a string containing the API key associated with
     the member login name; an API key can be obtained by submitting a
     secure support request to NearlyFreeSpeeech.NET.
   - "request_path" should be a string containing the path portion of the
@@ -72,7 +72,7 @@ def run_request(username, API_key, request_path, request_body = None):
 
   - "username" should be a string containing the member login name of
     the user making the request.
-  - "API_key" should be a string containing the API key assosiated with
+  - "API_key" should be a string containing the API key associated with
     the member login name; an API key can be obtained by submitting a
     secure support request to NearlyFreeSpeeech.NET.
   - "request_path" should be a string containing the path portion of the

@@ -16,6 +16,7 @@ setup(
     "Topic :: Software Development :: Libraries :: Python Modules"
   ),
   description = nfsnapi.__doc__.split("\n", 1)[0],
+  keywords = "nearlyfreespeech nfsn",
   long_description = open("readme.txt").read(),
   name = "nfsnapi",
   py_modules = ["nfsnapi"],

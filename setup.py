@@ -17,7 +17,7 @@ setup(
   ),
   description = nfsnapi.__doc__.split("\n", 1)[0],
   keywords = "nearlyfreespeech nfsn",
-  long_description = open("readme.txt").read(),
+  long_description = open("README.txt").read(),
   name = "nfsnapi",
   py_modules = ["nfsnapi"],
   url = "https://github.com/damiendart/nfsnapi-python",

@@ -15,8 +15,7 @@ setup(
     "Topic :: Internet :: WWW/HTTP",
     "Topic :: Software Development :: Libraries :: Python Modules"
   ),
-  # FIXME: Change description.
-  description = "An unofficial NearlyFreeSpeech.NET API thing.",
+  description = nfsnapi.__doc__.split("\n", 1)[0],
   long_description = open("readme.txt").read(),
   name = "nfsnapi",
   py_modules = ["nfsnapi"],

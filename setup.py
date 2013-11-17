@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+
+"""Setup script for "nfsnapi".
+
+This file was written by Damien Dart, <damiendart@pobox.com>. This is
+free and unencumbered software released into the public domain. For more
+information, please refer to the accompanying "UNLICENCE" file.
+"""
+
 from distutils.core import setup
 import nfsnapi
 

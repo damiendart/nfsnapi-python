@@ -10,8 +10,8 @@ must have an account with NearlyFreeSpeech.NET, along with:
 
 Credentials and other required information are read from a
 "nfsnapi-tests.cfg" file located either in the current directory or the
-home directory of the user running the tests. This file must contain the
-following information (replace dummy values with your own details):
+home directory of the user running the tests. The contents of the
+configuration file must adhere to the following structure:
 
   [credentials]
   accountnumber = A1B2-C3D4E5F6
@@ -19,6 +19,10 @@ following information (replace dummy values with your own details):
   username = testuser
   [domainname]
   domainname = example.com
+
+This file was written by Damien Dart, <damiendart@pobox.com>. This is
+free and unencumbered software released into the public domain. For more
+information, please refer to the accompanying "UNLICENCE" file.
 """
 
 

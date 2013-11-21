@@ -57,7 +57,7 @@ class NFSNAPITests(unittest.TestCase):
 
   def testBadInput(self):
     self.assertRaises(nfsnapi.NFSNAPIRequestError, nfsnapi.run_request,
-      "DERP", "DERP", "DERP", "DERP"),
+      "DERP", "DERP", "/DERP", "DERP"),
 
 
 if __name__ == "__main__":

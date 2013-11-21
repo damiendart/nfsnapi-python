@@ -89,7 +89,9 @@ def run_request(username, API_key, request_path, request_body = None):
   try:
     return urllib2.urlopen(urllib2.Request(
         "https://api.nearlyfreespeech.net%s" % request_path, request_body,
-        auth_header(username, API_key, request_path, str(request_body or "")))).read()
+        dict(auth_header(username, API_key, request_path, request_body or ""),
+        **{"User-Agent": "nfsnapi/" + __version__ +
+        " +https://github.com/damiendart/nfsnapi-python"}))).read()
   except httplib.HTTPException as e:
     raise NFSNAPIRequestError(str(e))
   except urllib2.HTTPError as e:

@@ -22,3 +22,11 @@ Synopsis
   ... "/dns/DOMAIN/listRRs", "type=A")
   (A bunch of JSON not shown.)
   >>> # And so on...
+
+
+Licence
+-------
+
+"nfsnapi" was written by Damien Dart, <damiendart@pobox.com>. This is
+free and unencumbered software released into the public domain. For more
+information, please refer to the accompanying "UNLICENCE" file.

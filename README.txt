@@ -11,7 +11,7 @@ class) that make working with the `NearlyFreeSpeech.NET API`_ easier.
 Synopsis
 --------
 
-.. code-block:: pycon
+::
 
   >>> import nfsnapi
   >>> # Replace USERNAME, API_KEY, and so on with actual values.
@@ -24,9 +24,24 @@ Synopsis
   >>> # And so on...
 
 
+Installation
+------------
+
+The usual ``python setup.py install`` dance will install ``nfsnapi``.
+
+
+Documentation and Testing
+-------------------------
+
+The ``nfsnapi`` module is heavily documented. Running
+``nfnsapi-tests.py`` will, funnily enough, run some tests; the tests
+require a configuration file with API credentials and what-not, see
+``nfnsapi-tests.py``'s docstring for more information.
+
+
 Licence
 -------
 
-"nfsnapi" was written by Damien Dart, <damiendart@pobox.com>. This is
+``nfsnapi`` was written by Damien Dart, <damiendart@pobox.com>. This is
 free and unencumbered software released into the public domain. For more
 information, please refer to the accompanying "UNLICENCE" file.

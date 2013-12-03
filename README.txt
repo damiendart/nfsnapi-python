@@ -28,6 +28,10 @@ Installation
 ------------
 
 The usual ``python setup.py install`` dance will install ``nfsnapi``.
+Alternatively, ``nfsnapi`` is available from `PyPI`_ via your Python
+package manager of choice.
+
+.. _PyPI: https://pypi.python.org/pypi/nfsnapi
 
 
 Documentation and Testing

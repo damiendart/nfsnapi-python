@@ -78,8 +78,8 @@ def run_request(username, API_key, request_path, request_body = None):
   - "request_path" should be a string containing the path portion of the
     requested URL. For example, if the requested URL is
     <https://api.nearlyfreespeech.net/site/example/addAlias>,
-    "request_path" would be "/site/example/addAlias". Ensure that the
-    first character is a forward slash.
+    "request_path" would be "/site/example/addAlias". The trailing
+    forward-slash is optional.
   - "request_body" may be a string containing the HTTP request message
     body for HTTP POST requests or "None" for HTTP GET requests.
     Pass an empty string for HTTP POST requests that do not require a
@@ -88,6 +88,8 @@ def run_request(username, API_key, request_path, request_body = None):
   """
 
   try:
+    if (request_path[0] != "/"):
+      request_path = "/%s" % request_path
     return urllib2.urlopen(urllib2.Request(
         "https://api.nearlyfreespeech.net%s" % request_path, request_body,
         dict(auth_header(username, API_key, request_path, request_body or ""),

@@ -44,14 +44,16 @@ def auth_header(username, API_key, request_path, request_body = ""):
     secure support request to NearlyFreeSpeeech.NET.
   - "request_path" should be a string containing the path portion of the
     requested URL. For example, if the requested URL is
-    <https://api.nearlyfreespeech.net/site/example/addAlias>,
-    "request_path" would be "/site/example/addAlias".
+    "request_path" would be "/site/example/addAlias". The trailing
+    forward-slash is optional.
   - "request_body" may be a string containing the HTTP request message
     body for HTTP POST requests or an empty string if no such data is
     required. The data should be in the standard
     "application/x-www-form-urlencoded" format.
   """
 
+  if (request_path[0] != "/"):
+    request_path = "/%s" % request_path
   salt = "".join(random.choice(string.ascii_letters) for i in range(16))
   timestamp = str(int(time.time()))
   return { "X-NFSN-Authentication" : ";".join([username, timestamp, salt,

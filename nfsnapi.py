@@ -44,7 +44,8 @@ def auth_header(username, API_key, request_path, request_body = ""):
     secure support request to NearlyFreeSpeeech.NET.
   - "request_path" should be a string containing the path portion of the
     requested URL. For example, if the requested URL is
-    "request_path" would be "/site/example/addAlias". The trailing
+    <https://api.nearlyfreespeech.net/site/example/addAlias>,
+    "request_path" would be "/site/example/addAlias". The first
     forward-slash is optional.
   - "request_body" may be a string containing the HTTP request message
     body for HTTP POST requests or an empty string if no such data is
@@ -80,7 +81,7 @@ def run_request(username, API_key, request_path, request_body = None):
   - "request_path" should be a string containing the path portion of the
     requested URL. For example, if the requested URL is
     <https://api.nearlyfreespeech.net/site/example/addAlias>,
-    "request_path" would be "/site/example/addAlias". The trailing
+    "request_path" would be "/site/example/addAlias". The first
     forward-slash is optional.
   - "request_body" may be a string containing the HTTP request message
     body for HTTP POST requests or "None" for HTTP GET requests.

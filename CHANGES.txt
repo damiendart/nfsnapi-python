@@ -2,8 +2,8 @@
 ``nfsnapi`` Changelog
 =====================
 
-v0.2.0
-------
+v0.2.0, 29/12/2013
+------------------
 
   - Improve handling of request paths lacking a leading forward-slash.
   - Update documentation and installation instructions.

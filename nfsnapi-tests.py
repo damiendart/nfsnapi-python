@@ -55,7 +55,7 @@ class NFSNAPITests(unittest.TestCase):
     self.assertIsInstance(nfsnapi.run_request(self.username, self.API_key,
         "/dns/%s/listRRs" % self.domain_name, ""), str)
 
-  def testRequestPathWithoutTrailingForwardSlash(self):
+  def testRequestPathWithoutLeadingForwardSlash(self):
     self.assertIsInstance(nfsnapi.run_request(self.username, self.API_key,
         "dns/%s/listRRs" % self.domain_name, ""), str)
 

@@ -5,7 +5,7 @@
 v0.2.0
 ------
 
-  - Improve handling of request paths lacking a trailing forward-slash.
+  - Improve handling of request paths lacking a leading forward-slash.
   - Update documentation and installation instructions.
 
 

@@ -1,5 +1,4 @@
 TODO
 ====
 
-  * Add Python 3 support.
   * Make `NFSNAPIRequestError` more informative.

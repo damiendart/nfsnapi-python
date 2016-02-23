@@ -26,15 +26,20 @@ information, please refer to the accompanying "UNLICENCE" file.
 """
 
 
-import ConfigParser
 import nfsnapi
 import os
 import unittest
+ 
+try:
+  from configparser import ConfigParser
+  basestring = str
+except ImportError:
+  from ConfigParser import ConfigParser
 
 
 class NFSNAPITests(unittest.TestCase):
   def setUp(self):
-    config = ConfigParser.ConfigParser()
+    config = ConfigParser()
     config.read(["nfsnapi-tests.cfg",
         os.path.expanduser("~/.nfsnapi-tests.cfg"),
         os.path.expanduser("~/nfsnapi-tests.cfg")])
@@ -45,19 +50,19 @@ class NFSNAPITests(unittest.TestCase):
 
   def testGETRequest(self):
     self.assertIsInstance(nfsnapi.run_request(self.username, self.API_key,
-        "/account/%s/balance" % self.account_number), str)
+        "/account/%s/balance" % self.account_number), basestring)
 
   def testPOSTRequestWithBody(self):
     self.assertIsInstance(nfsnapi.run_request(self.username, self.API_key,
-        "/dns/%s/listRRs" % self.domain_name, "type=A"), str)
+        "/dns/%s/listRRs" % self.domain_name, "type=A"), basestring)
 
   def testPOSTRequestWithoutBody(self):
     self.assertIsInstance(nfsnapi.run_request(self.username, self.API_key,
-        "/dns/%s/listRRs" % self.domain_name, ""), str)
+        "/dns/%s/listRRs" % self.domain_name, ""), basestring)
 
   def testRequestPathWithoutLeadingForwardSlash(self):
     self.assertIsInstance(nfsnapi.run_request(self.username, self.API_key,
-        "dns/%s/listRRs" % self.domain_name, ""), str)
+        "dns/%s/listRRs" % self.domain_name, ""), basestring)
 
   def testBadInput(self):
     self.assertRaises(nfsnapi.NFSNAPIRequestError, nfsnapi.run_request,

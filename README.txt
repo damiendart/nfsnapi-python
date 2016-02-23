@@ -4,6 +4,8 @@ nfsnapi
 
 A simple Python package with a couple of functions (and an exception
 class) that make working with the `NearlyFreeSpeech.NET API`_ easier.
+``nfsnapi`` supports both Python 2 and Python 3, and it requires no
+external dependencies.
 
 .. _NearlyFreeSpeech.NET API: https://members.nearlyfreespeech.net/wiki/API
 
@@ -17,7 +19,7 @@ Synopsis
   >>> # Replace USERNAME, API_KEY, and so on with actual values.
   >>> nfsnapi.run_request("USERNAME", "API_KEY",
   ... "/account/ACCOUNT_NUMBER/balance")
-  '10.56'
+  u'10.56'
   >>> nfsnapi.run_request("USERNAME", "API_KEY",
   ... "/dns/DOMAIN/listRRs", "type=A")
   (A bunch of JSON not shown.)

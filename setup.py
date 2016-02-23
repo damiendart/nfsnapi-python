@@ -29,6 +29,6 @@ setup(
   long_description = open("README.txt").read(),
   name = "nfsnapi",
   py_modules = ["nfsnapi"],
-  url = "https://github.com/damiendart/nfsnapi-python",
+  url = "http://www.robotinaponcho.net/git/nfsnapi-python.git/",
   version = nfsnapi.__version__
 )

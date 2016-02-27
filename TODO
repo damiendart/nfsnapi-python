@@ -1,4 +1,9 @@
 TODO
 ====
 
+  * Add `auth_header` test.
   * Make `NFSNAPIRequestError` more informative.
+  * Test with multiple versions of Python using [Tox][1].
+  * Verify SSH certificate?
+
+[1]: <https://testrun.org/tox/latest/>

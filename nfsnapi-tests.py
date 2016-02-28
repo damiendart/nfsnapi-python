@@ -29,7 +29,7 @@ information, please refer to the accompanying "UNLICENCE" file.
 import nfsnapi
 import os
 import unittest
- 
+
 try:
   from configparser import ConfigParser
   basestring = str

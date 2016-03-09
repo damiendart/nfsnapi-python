@@ -1,3 +1,4 @@
 include CHANGES.txt
 include UNLICENCE
 include nfsnapi-tests.py
+include tox.ini

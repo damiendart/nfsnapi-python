@@ -7,8 +7,12 @@ class) that make working with the `NearlyFreeSpeech.NET API`_ easier.
 
 .. _NearlyFreeSpeech.NET API: https://members.nearlyfreespeech.net/wiki/API
 
-``nfsnapi`` supports Python 2.7 and later, and Python 3. There are no
-prerequisites other than a supported version of Python.
+``nfsnapi`` supports Python 2.7 and later, and Python 3. For general
+usage there are no prerequisites other than a supported version of
+Python, however to test ``nfsnapi`` with Python 3.2 and earlier
+versions, the `mock`_ library is required.
+
+.. _mock: https://pypi.python.org/pypi/mock
 
 
 Synopsis
@@ -41,9 +45,12 @@ Documentation and Testing
 -------------------------
 
 The ``nfsnapi`` module is heavily documented. Running
-``nfnsapi-tests.py`` will, funnily enough, run some tests; the tests
-require a configuration file with API credentials and what-not, see
-``nfnsapi-tests.py``'s docstring for more information.
+``nfnsapi-tests.py`` will, funnily enough, run some tests. The tests
+require a configuration file with API credentials and what-not (see
+``nfnsapi-tests.py``'s docstring for more information), and the `mock`_
+library if testing with Python 3.2 or earlier.
+
+.. _mock: https://pypi.python.org/pypi/mock
 
 There's support for `Tox`_, which will run the tests on all available
 and supported versions of Python.

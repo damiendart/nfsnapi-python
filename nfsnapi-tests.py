@@ -32,12 +32,19 @@ import unittest
 
 try:
   from configparser import ConfigParser
+  from unittest import mock
   basestring = str
 except ImportError:
   from ConfigParser import ConfigParser
+  import mock
 
 
 class NFSNAPITests(unittest.TestCase):
+  # The "fake" salt value are based on the examples used on
+  # NearlyFreeSpeech.NET Members' Wiki. For more information, see
+  # <https://members.nearlyfreespeech.net/wiki/API/Introduction>.
+  FAKE_SALT = iter("dkwo28Sile4jdXkw")
+
   def setUp(self):
     config = ConfigParser()
     config.read(["nfsnapi-tests.cfg",
@@ -47,6 +54,16 @@ class NFSNAPITests(unittest.TestCase):
     self.account_number = config.get("credentials", "accountnumber")
     self.domain_name = config.get("domainname", "domainname")
     self.username = config.get("credentials", "username")
+
+  @mock.patch("random.choice", lambda x: next(NFSNAPITests.FAKE_SALT))
+  @mock.patch("time.time", return_value = 1012121212)
+  def testAuthHeader(self, mock):
+    # The expected values are based on the examples used on
+    # NearlyFreeSpeech.NET Members' Wiki. For more information, see
+    # <https://members.nearlyfreespeech.net/wiki/API/Introduction>.
+    self.assertEqual(nfsnapi.auth_header("testuser", "p3kxmRKf9dk3l6ls",
+        "/site/example/getInfo"), {"X-NFSN-Authentication" :
+        "testuser;1012121212;dkwo28Sile4jdXkw;0fa8932e122d56e2f6d1550f9aab39c4aef8bfc4"})
 
   def testGETRequest(self):
     self.assertIsInstance(nfsnapi.run_request(self.username, self.API_key,

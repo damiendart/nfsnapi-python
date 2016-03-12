@@ -38,7 +38,7 @@ except ImportError:
   from urllib2 import urlopen, Request, HTTPError, URLError
 
 
-def auth_header(username, API_key, request_path, request_body = ""):
+def auth_header(username, API_key, request_path, request_body = b""):
   """Return a NearlyFreeSpeeech.NET authentication HTTP header field.
 
   Returns a dictionary containing an authentication HTTP header field

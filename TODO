@@ -1,6 +1,5 @@
 TODO
 ====
 
-  * Add `auth_header` test.
   * Make `NFSNAPIRequestError` more informative.
   * Verify SSH certificate?

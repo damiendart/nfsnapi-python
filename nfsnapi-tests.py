@@ -40,7 +40,7 @@ except ImportError:
 
 
 class NFSNAPITests(unittest.TestCase):
-  # The "fake" salt value are based on the examples used on
+  # The "fake" salt value is based on the examples used on
   # NearlyFreeSpeech.NET Members' Wiki. For more information, see
   # <https://members.nearlyfreespeech.net/wiki/API/Introduction>.
   FAKE_SALT = iter("dkwo28Sile4jdXkw")

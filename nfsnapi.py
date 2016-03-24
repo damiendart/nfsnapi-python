@@ -105,7 +105,7 @@ def run_request(username, API_key, request_path, request_body = None):
     return urlopen(Request("https://api.nearlyfreespeech.net" + request_path,
         request_body, dict(auth_header(username, API_key, request_path,
         request_body or b""), **{"User-Agent": "nfsnapi/" + __version__ +
-        " +http://www.robotinaponcho.net/git/nfsnapi-python.git/"}))).read().decode()
+        " +https://www.robotinaponcho.net/git/?p=nfsnapi-python.git"}))).read().decode()
   except HTTPException as e:
     raise NFSNAPIRequestError(str(e))
   except HTTPError as e:

@@ -9,7 +9,7 @@ v0.3.0, 22/03/2016
   - Add support for testing with multiple versions of Python using Tox. 
   - Add test for ``auth_header``, fixing an incorrect default parameter
     in ``auth_header`` along the way.
-  - Update documentation.
+  - Update documentation and project homepage URLs.
 
 
 v0.2.0, 29/12/2013

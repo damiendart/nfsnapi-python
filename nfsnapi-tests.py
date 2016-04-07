@@ -31,11 +31,18 @@ import os
 import unittest
 
 try:
-  from configparser import ConfigParser
-  from unittest import mock
+  unicode = unicode
+except NameError:
   basestring = str
+
+try:
+  from configparser import ConfigParser
 except ImportError:
   from ConfigParser import ConfigParser
+
+try:
+  from unittest import mock
+except ImportError:
   import mock
 
 

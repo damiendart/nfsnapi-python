@@ -34,10 +34,11 @@ Synopsis
 Installation
 ------------
 
-The usual ``python setup.py install`` dance will install ``nfsnapi``.
-Alternatively, ``nfsnapi`` is available from `PyPI`_ via your Python
-package manager of choice.
+The usual ``python setup.py install`` dance will install ``nfsnapi`` if
+grabbing the `source distribution`_. Alternatively, ``nfsnapi`` is
+available from `PyPI`_ via your Python package manager of choice.
 
+.. _source distribution: https://www.robotinaponcho.net/git/?p=nfsnapi-python.git
 .. _PyPI: https://pypi.python.org/pypi/nfsnapi
 
 

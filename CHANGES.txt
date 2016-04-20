@@ -2,7 +2,7 @@
 ``nfsnapi`` Changelog
 =====================
 
-v0.3.0, 22/03/2016
+v0.3.0, 20/04/2016
 ------------------
 
   - Add support for Python 3.2 and later.

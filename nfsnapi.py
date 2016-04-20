@@ -18,7 +18,7 @@ information, please refer to the accompanying "UNLICENCE" file.
 __author__ = "Damien Dart, <damiendart@pobox.com>"
 __license__ = "Unlicense"
 __title__ = "nfsnapi"
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 
 import json
